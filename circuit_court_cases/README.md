@@ -15,3 +15,7 @@ Currently, the repository contains 2 files
 - you will also need to install Oxygen XML editor
 
 ## how can I run this? 
+
+## what are the next steps?
+- Right now, we are ignoring the complexity of different sherrif and judge types- we may want to extract that information. To do so, we'd need to introduce many new metadata fields
+- 
