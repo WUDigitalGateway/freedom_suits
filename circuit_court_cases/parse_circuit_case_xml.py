@@ -1,38 +1,22 @@
-import xml.etree.ElementTree as ET
 import json 
 import os 
 import shutil
-import csv
 import pandas as pd
 
-# how to use this
-# first, locate the goldenseal staging directory containing all the circuit court cases
-# next, run get_xml_files and enter the directory in os.listdir("/Users/e.schwartz/Library/CloudStorage/Box-Box/dlps/dlps_digitalassets/Goldenseal-Staging/ccr") 
-# this will copy and save trhe xml files to a subdirectory in the same location called freedom_suits_xml
-# next, navigate to oxygen xml editor. Click file, import/convert, additional conversions, xml to json. In the pop up window select add folder, and select the freedom_suits_xml folder. 
-# in output folder, create an empty folder in the same directory as the xml folder called freedom_suits_json. Click run.
-# After running this, the freedom_suits_json folder should contain json files. Naviagte back to this python script. Enter the name of the json folder in dir variable in main.
-# run main. 
-        
-
-
-#  path to all the circuit court cases /Users/e.schwartz/Library/CloudStorage/Box-Box/dlps/dlps_digitalassets/Goldenseal-Staging/ccr
 # extracts metadata for all xml files in the directory (dir)
 def main():
-    dir = "/Users/e.schwartz/Documents/projects/freedom_suits/freedom_suits_json/"
+    # dir = "/Users/e.schwartz/Documents/projects/freedom_suits/freedom_suits_json/"
+    dir = input('please supply the complete path to the folder containing circuit court json records (https://wustl.box.com/s/2adu9hi66etmwhta1nmstj6r4mgxe317): ')
+    csv_filename = input('please enter the complete path to folder where you want to save the results csv file: ')
     cases_metadata = []
     for this_file in os.listdir(dir):
         uuid=  str(this_file.split('.')[0])+ str(this_file.split('.')[1])
         json_file =(dir + str(this_file))
-        print(json_file)
         metadata = json_metadata_getter( json_file, uuid)
-        print(metadata)
         cases_metadata.append(metadata)
-    
-    
-    # makes_results_csv(cases_metadata, "/Users/e.schwartz/Documents/projects/freedom_suits/freedom_suits_metadata.csv")
     df=pd.DataFrame.from_dict(cases_metadata, orient='columns')
-    df.to_csv('/Users/e.schwartz/Documents/projects/freedom_suits/freedom_suits.csv')
+    # df.to_csv('/Users/e.schwartz/Documents/projects/freedom_suits/freedom_suits.csv')
+    df.to_csv(csv_filename)
 
 
 
@@ -303,8 +287,6 @@ def get_relatedCase(caseDesc):
         return caseDesc['relatedCase']
     except KeyError:
         return ''
-
-
-
+            
  
 main()
