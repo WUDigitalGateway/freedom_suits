@@ -44,28 +44,33 @@ Trespass)
 - witnesses: a witness or list of witnesses for the case
 
 ## Python Scripts:
-**parses_circuit_case_xml.py** generates 1 csv file. 
-### Metadata file: 
-wherein each row maps to one circuit court case and the columns represent metadata fields extracted from the xml file.
+
+### parses_circuit_case_xml.py*: 
+generates 1 csv file wherein each row maps to one circuit court case and the columns represent metadata fields extracted from the xml file.
 https://github.com/WUDigitalGateway/freedom_suits/blob/c952e5758e52cf08c51b9a3c6
 0e0924c0c77edbb/circuit_court_cases/parse_circuit_case_xml.py
 
-make_file_index.py generates 2 csv files.
 
-### File Locations:
-ccr_file_locations.csv details the xml file location and the image files locations for
-each case.
-These can be located in WashU’s box at the pathways provided.
-The image file paths are separated by ‘||’ such that there may be multiple image files in
-one image_paths cell separated by ‘||’
-****makes_file_index.py is the script used to make this file:
+
+### make_file_index.py:
+Generates 2 csv files. **ccr_file_locations.csv** details the xml file location and the image files locations for
+each case. These can be located in WashU’s box at the pathways provided. The image file paths are separated by ‘||’ such that there may be multiple image files in one image_paths cell separated by ‘||’ :
 https://github.com/WUDigitalGateway/freedom_suits/blob/c952e5758e52cf08c51b9a3c6
 0e0924c0c77edbb/circuit_court_cases/makes_file_index.py
 
-### Error report file:
-file_error_report.csv: A csv file of all files where the number of files that match the
+Additionally, make_file_index creates **file_error_report.csv**: A csv file of all files where the number of files that match the
 case ID differs from the number specified in the xml title. Includes explanations of the
 discrepancy. Most of these files produce errors because the file naming convention for
 the images in the Dred Scott cases differs from the ccr cases. Others have
 discrepancies because there are duplicate pages scans or because page scan files
 corrupted
+
+### tifs-to-pdf.py
+Ingests the file location csv file, ccr_file_locations.csv, converts the tifs to pdfs, merges the pdf files, and saves them to a location in box. Use these file paths and metadata to bulk upload items to IA. 
+
+### makes_plain_text.py
+Parses an xml file of a circuit court case and returns it as a plain text string. Creates a csv file containing the transcript for each case.
+
+### merge_ccr_files.py
+Merges the metadata csv file, the file locations csv file, and the plain text csv file by merging them on the case_id field. 
+
