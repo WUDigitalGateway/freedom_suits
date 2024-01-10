@@ -7,16 +7,18 @@ scanned page images for each court record and custom-encoded XML files. The gene
 files consist of the metadata for each case and the locations of the page-images and
 xml files.
 
-## Netadata Fields
+## Metadata Fields
 Each case has a unique case_id that starts with the string ‘ccr’ followed by the 4 digit
 year in which the case was file, followed by 5 unique digits, I.e., ccrYYYY00000. For
 example, ccr185006891.
+
 These case_ids should be used to identify a record across the csv files.
 The flat files were generated using the python scripts in:
 https://github.com/WUDigitalGateway/freedom_suits/tree/main
 ccr_metadata.csv details the metadata encoded into the xml files for each case_id.
+
 The fields include:
-• case_id: the unique identifier for the record
+- case_id: the unique identifier for the record
 • title: the title of the case as encoded by the Legal Encoded team
 • date_filing_dc: the date the case was filed in Dublin core format (YYYY-MM-DD)
 • date_filing_text: the filing date as a text field (i.e., April 15, 1825)
