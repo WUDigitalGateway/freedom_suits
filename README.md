@@ -44,11 +44,13 @@ Trespass)
 - witnesses: a witness or list of witnesses for the case
 
 ## Python Scripts:
-**parses_circuit_case_xml.py** generates 3 csv files. 
+**parses_circuit_case_xml.py** generates 1 csv file. 
 ### Metadata file: 
 wherein each row maps to one circuit court case and the columns represent metadata fields extracted from the xml file.
 https://github.com/WUDigitalGateway/freedom_suits/blob/c952e5758e52cf08c51b9a3c6
 0e0924c0c77edbb/circuit_court_cases/parse_circuit_case_xml.py
+
+make_file_index.py generates 2 csv files.
 
 ### File Locations:
 ccr_file_locations.csv details the xml file location and the image files locations for
